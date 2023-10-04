@@ -53,17 +53,22 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
 
 }
-afterEvaluate {
+
     publishing {
         publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
+            register<MavenPublication>("release") {
 
                 groupId = "com.github.Chirag-S-7"
                 artifactId = "demo-library-android"
                 version = "1.0"
+
+                afterEvaluate {
+                    from(components["release"])
+                }
+
             }
         }
+
     }
-}
+
 
