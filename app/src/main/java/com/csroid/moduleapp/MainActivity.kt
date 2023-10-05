@@ -16,10 +16,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnFeature1.setOnClickListener {
-
+            startActivityForResult(GetDetailsActivity.getInstacne(this),100)
         }
 
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+
+        if (requestCode === 100) {
+            if (resultCode === RESULT_OK) {
+                val result: String = data?.getStringExtra("result")!!
+                binding.tvTodo.text=result
+            }
+        }
+    }
 
 }
